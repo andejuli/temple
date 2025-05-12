@@ -12,6 +12,7 @@ const countDisplay = document.getElementById('countDisplay');
   let displayedCount = 0;
 
   function updateImage(count) {
+    console.log(count);
     if (count <= 130) {
       countDisplay.innerText = count + ' Total Visits';
       templeElem.src = `images/t-${count}.png`;
@@ -54,12 +55,29 @@ const countDisplay = document.getElementById('countDisplay');
 
 
 // Undo last click (only affects the local display and session count)
-undoBtn.addEventListener('click', () => {
-  let sessionClicks = Number(sessionStorage.getItem('sessionClicks') || '0'); // 
-    if (sessionClicks > 0 && displayedCount > 0) {
-      sessionClicks--;
-      sessionStorage.setItem('sessionClicks', sessionClicks); // 
-      displayedCount--; // Decrement the local displayed count
-      updateImage(displayedCount);
-    }
+undoBtn.addEventListener('click', async() => {
+  let sessionClicks = Number(sessionStorage.getItem('sessionClicks')); // 
+    // if (sessionClicks > 0 && displayedCount > 0) {
+    //   sessionClicks--;
+    //   sessionStorage.setItem('sessionClicks', sessionClicks); // 
+      //displayedCount--; // Decrement the local displayed count
+      // updateImage(displayedCount);
+      try {
+        // Increment the backend counter
+        const response = await fetch('https://therapyidahofalls.com/counter_minus.php');
+        const newCount = await response.text();
+  
+        if (newCount <= 130 && sessionClicks > 0) {
+          displayedCount = Number(newCount);
+          updateImage(displayedCount);
+  
+          // Increment the local session click counter
+          //let sessionClicks = sessionStorage.getItem('sessionClicks'); 
+          sessionClicks--;
+          sessionStorage.setItem('sessionClicks', sessionClicks); 
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    
 });
