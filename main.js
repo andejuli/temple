@@ -1,4 +1,4 @@
-const countDisplay = document.getElementById('countDisplay');
+  const countDisplay = document.getElementById('countDisplay');
   const templeElem = document.getElementById('temple');
   const incrementBtn = document.getElementById('increment');
   const undoBtn = document.getElementById('undo');
@@ -8,8 +8,6 @@ const countDisplay = document.getElementById('countDisplay');
     sessionStorage.setItem('sessionClicks', '0'); 
   }
 
-  // Initialize a local counter for increments this session
-  let localIncrementCount = 0;
   // Initialize the displayed count on page load
   let displayedCount = 0;
 
@@ -26,12 +24,15 @@ const countDisplay = document.getElementById('countDisplay');
 
   incrementBtn.addEventListener('click', async () => {
     try {
-      let sessionClicks = Number(sessionStorage.getItem('sessionClicks')); 
       // Increment the backend counter
       const response = await fetch('https://therapyidahofalls.com/counter.php');
       const newCount = await response.text();
-
-      if (newCount <= 130) {
+      let sessionClicks = Number(sessionStorage.getItem('sessionClicks')); 
+      if (sessionClicks < 0) {
+        sessionStorage.setItem(sessionClicks, 0);
+      }
+      if (newCount <= 130 && newCount >= 0) {
+        
         displayedCount = Number(newCount);
         updateImage(displayedCount);
 
@@ -39,7 +40,6 @@ const countDisplay = document.getElementById('countDisplay');
         
         sessionClicks++;
         sessionStorage.setItem('sessionClicks', sessionClicks); 
-        localIncrementCount++;
       }
     } catch (error) {
       console.error('Error:', error);
@@ -61,19 +61,23 @@ const countDisplay = document.getElementById('countDisplay');
 // Undo last click (only affects the local display and session count)
 undoBtn.addEventListener('click', async() => {
   let sessionClicks = Number(sessionStorage.getItem('sessionClicks')); // 
+  if (sessionClicks < 1){
+    return;
+  }
       try {
-        // Decrement the backend counter
+        // Increment the backend counter
         const response = await fetch('https://therapyidahofalls.com/counter_minus.php');
         const newCount = await response.text();
   
-        if (newCount <= 130 && localIncrementCount > 0 && sessionClicks > 0) {
+        if (newCount <= 130 && newCount >= 0 && sessionClicks > 0 && sessionClicks >= 1) {
           displayedCount = Number(newCount);
           updateImage(displayedCount);
   
-          // Increment the local session click counter
-          //let sessionClicks = sessionStorage.getItem('sessionClicks'); 
-          sessionClicks--;
-          sessionStorage.setItem('sessionClicks', sessionClicks); 
+          // Decrement the local session click counter          
+            sessionClicks--;
+            console.log(sessionClicks);
+            sessionStorage.setItem('sessionClicks', sessionClicks); 
+          
         }
       } catch (error) {
         console.error('Error:', error);
