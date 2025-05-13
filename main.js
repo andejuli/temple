@@ -8,6 +8,8 @@ const countDisplay = document.getElementById('countDisplay');
     sessionStorage.setItem('sessionClicks', '0'); 
   }
 
+  // Initialize a local counter for increments this session
+  let localIncrementCount = 0;
   // Initialize the displayed count on page load
   let displayedCount = 0;
 
@@ -24,6 +26,7 @@ const countDisplay = document.getElementById('countDisplay');
 
   incrementBtn.addEventListener('click', async () => {
     try {
+      let sessionClicks = Number(sessionStorage.getItem('sessionClicks')); 
       // Increment the backend counter
       const response = await fetch('https://therapyidahofalls.com/counter.php');
       const newCount = await response.text();
@@ -33,9 +36,10 @@ const countDisplay = document.getElementById('countDisplay');
         updateImage(displayedCount);
 
         // Increment the local session click counter
-        let sessionClicks = sessionStorage.getItem('sessionClicks'); 
-        sessionClicks = Number(sessionClicks) + 1;
+        
+        sessionClicks++;
         sessionStorage.setItem('sessionClicks', sessionClicks); 
+        localIncrementCount++;
       }
     } catch (error) {
       console.error('Error:', error);
@@ -57,17 +61,12 @@ const countDisplay = document.getElementById('countDisplay');
 // Undo last click (only affects the local display and session count)
 undoBtn.addEventListener('click', async() => {
   let sessionClicks = Number(sessionStorage.getItem('sessionClicks')); // 
-    // if (sessionClicks > 0 && displayedCount > 0) {
-    //   sessionClicks--;
-    //   sessionStorage.setItem('sessionClicks', sessionClicks); // 
-      //displayedCount--; // Decrement the local displayed count
-      // updateImage(displayedCount);
       try {
-        // Increment the backend counter
+        // Decrement the backend counter
         const response = await fetch('https://therapyidahofalls.com/counter_minus.php');
         const newCount = await response.text();
   
-        if (newCount <= 130 && sessionClicks > 0) {
+        if (newCount <= 130 && localIncrementCount > 0 && sessionClicks > 0) {
           displayedCount = Number(newCount);
           updateImage(displayedCount);
   
