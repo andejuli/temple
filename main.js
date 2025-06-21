@@ -18,6 +18,7 @@
   function updateImage(count) {
     //console.log(count);
     if (count <= 130) {
+      countDisplay.innerText = (count + monthCount * 130) + '/1040' + ' Total Visits ';
       templeElem.src = `images/t-${count}.png`;
     } else {
       templeElem.src = `images/t-130.png`;
@@ -95,11 +96,6 @@
     }
   })();
 
-function display(displayedCount, monthCount) {
-  countDisplay.innerText = (displayedCount + monthCount * 130) + '/1040' + ' Total Visits ';
-}
-
-display(displayedCount, monthCount);
 
 // Undo last click (only affects the local display and session count)
 undoBtn.addEventListener('click', async() => {
