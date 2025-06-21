@@ -84,7 +84,7 @@
   // Load the current month on page load
   (async () => {
     try {
-      const response = await fetch('https://therapyidahofalls.com/month-counter.php');
+      const response = await fetch('https://therapyidahofalls.com/get-month-counter.php');
       monthCount = Number(await response.text());
       updateMonth(monthCount);
     } catch (error) {
