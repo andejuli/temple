@@ -10,17 +10,17 @@
   //   sessionStorage.setItem('sessionClicks', '0'); 
   // }
   sessionStorage.setItem('sessionClicks', '0');
+
+  // Initialize the displayed count on page load
+  let displayedCount;
+  let monthCount;
   
   // Load the current month on page load
   (async () => {
     try {
       const response = await fetch('https://therapyidahofalls.com/get-month-counter.php');
-      let monthCount;
       monthCount = Number(await response.text());
       updateMonthImage(monthCount);
-      // Initialize the displayed count on page load
-      
-      
     } catch (error) {
       console.error('Error:', error);
     }
@@ -31,7 +31,6 @@
   (async () => {
     try {
       const response = await fetch('https://therapyidahofalls.com/get-counter.php');
-      let displayedCount;
       displayedCount = Number(await response.text());
       updateImage(displayedCount);
     } catch (error) {
