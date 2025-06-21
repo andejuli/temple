@@ -18,7 +18,7 @@
   function updateImage(count) {
     //console.log(count);
     if (count <= 130) {
-      countDisplay.innerText = count + ' Total Visits';
+      countDisplay.innerText = (count + monthCount * 130) + ' Total Visits';
       templeElem.src = `images/t-${count}.png`;
     } else {
       templeElem.src = `images/t-130.png`;
@@ -66,7 +66,7 @@
         sessionStorage.setItem('sessionClicks', sessionClicks); 
       } else {
         updateMonth();
-        alert('new month!');
+        
       }
       
     } catch (error) {
