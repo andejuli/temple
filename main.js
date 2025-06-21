@@ -43,8 +43,8 @@
     if (count <= 130) {
       if (monthCount > 0) {
       countDisplay.innerText = (count + monthCount * 130) + '/1000' + ' Total Visits ';
-      templeElem.src = `images/t-${count}.png`;
       }
+      templeElem.src = `images/t-${count}.png`;
     } else {
       templeElem.src = `images/t-130.png`;
       countDisplay.innerText = 'We have met our month goal!';
