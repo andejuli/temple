@@ -6,9 +6,10 @@
   
 
   // Initialize session storage for clicks this session
-  if (!sessionStorage.getItem('sessionClicks')) { 
-    sessionStorage.setItem('sessionClicks', '0'); 
-  }
+  // if (!sessionStorage.getItem('sessionClicks')) { 
+  //   sessionStorage.setItem('sessionClicks', '0'); 
+  // }
+  sessionStorage.setItem('sessionClicks', '0');
 
   // Initialize the displayed count on page load
   let displayedCount = 0;
