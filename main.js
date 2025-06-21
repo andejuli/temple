@@ -12,8 +12,8 @@
   sessionStorage.setItem('sessionClicks', '0');
 
   // Initialize the displayed count on page load
-  let displayedCount = 0;
-  let monthCount = 0;
+  let displayedCount;
+  let monthCount;
   
   // Load the current month on page load
   (async () => {
