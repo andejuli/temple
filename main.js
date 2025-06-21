@@ -28,17 +28,15 @@
   }
 
   async function updateMonth(){
-      const mresponse = await fetch('http://therapyidahofalls.com/month-counter.php');
+      const mresponse = await fetch('https://therapyidahofalls.com/month-counter.php');
       const newMonCount = await mresponse.text();
-      if (newMonCount <=12  && newMonCount >=6) {
         monthCount = Number(newMonCount);
         updateMonthImage(monthCount);
-      }
-      }
+  }
 
   function updateMonthImage(monthCount) {
     console.log(monthCount);
-    if (monthCount <= 5) {
+    if (monthCount <= 5 && monthCount >= 0) {
       monthsElem.src=`images/month-${monthCount}.png`;
     } else {
       monthsElem.src=`images/month-6.png`;
