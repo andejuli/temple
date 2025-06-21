@@ -15,13 +15,9 @@
   let monthCount = 0;
   
 
-  function updateImage(count, mcount) {
+  function updateImage(count) {
     //console.log(count);
-    if (monthCount > 0) {
-      mcount = monthCount;
-    }
     if (count <= 130) {
-      countDisplay.innerText = (count + mcount * 130) + '/1040' + ' Total Visits ';
       templeElem.src = `images/t-${count}.png`;
     } else {
       templeElem.src = `images/t-130.png`;
@@ -80,15 +76,9 @@
   // Load the current count on page load
   (async () => {
     try {
-      
-      const response2 = await fetch('https://therapyidahofalls.com/get-month-counter.php');
-      monthCount = Number(await response2.text());
-      updateMonthImage(monthCount);
-
-      const response1 = await fetch('https://therapyidahofalls.com/get-counter.php');
-      displayedCount = Number(await response1.text());
-      updateImage(displayedCount, monthCount);
-
+      const response = await fetch('https://therapyidahofalls.com/get-counter.php');
+      displayedCount = Number(await response.text());
+      updateImage(displayedCount);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -97,12 +87,19 @@
   // Load the current month on page load
   (async () => {
     try {
-      
+      const response = await fetch('https://therapyidahofalls.com/get-month-counter.php');
+      monthCount = Number(await response.text());
+      updateMonthImage(monthCount);
     } catch (error) {
       console.error('Error:', error);
     }
   })();
 
+function display(displayedCount, monthCount) {
+  countDisplay.innerText = (displayedCount + monthCount * 130) + '/1040' + ' Total Visits ';
+}
+
+display(displayedCount, monthCount);
 
 // Undo last click (only affects the local display and session count)
 undoBtn.addEventListener('click', async() => {
