@@ -75,7 +75,7 @@
     try {
       const response = await fetch('https://therapyidahofalls.com/get-counter.php');
       displayedCount = Number(await response.text());
-      updateImage(displayedCount);
+      updateMonthImage(displayedCount);
     } catch (error) {
       console.error('Error:', error);
     }
