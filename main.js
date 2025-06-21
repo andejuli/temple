@@ -55,7 +55,7 @@
       if (sessionClicks < 0) {
         sessionStorage.setItem(sessionClicks, 0);
       }
-      if (newCount <= 129 && newCount >= 0) {
+      if (newCount <= 130 && newCount >= 0) {
         
         displayedCount = Number(newCount);
         updateImage(displayedCount);
