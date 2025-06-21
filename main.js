@@ -16,7 +16,7 @@
   
 
   function updateImage(count) {
-    //console.log(count);
+    console.log(monthCount);
     if (count <= 130) {
       countDisplay.innerText = (count + monthCount * 130) + '/1040' + ' Total Visits ';
       templeElem.src = `images/t-${count}.png`;
@@ -74,17 +74,6 @@
     }
   });
 
-  // Load the current count on page load
-  (async () => {
-    try {
-      const response = await fetch('https://therapyidahofalls.com/get-counter.php');
-      displayedCount = Number(await response.text());
-      updateImage(displayedCount);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  })();
-
   // Load the current month on page load
   (async () => {
     try {
@@ -96,6 +85,19 @@
     }
   })();
 
+
+  // Load the current count on page load
+  (async () => {
+    try {
+      const response = await fetch('https://therapyidahofalls.com/get-counter.php');
+      displayedCount = Number(await response.text());
+      updateImage(displayedCount);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  })();
+
+  
 
 // Undo last click (only affects the local display and session count)
 undoBtn.addEventListener('click', async() => {
