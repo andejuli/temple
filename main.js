@@ -15,10 +15,13 @@
   let monthCount = 0;
   
 
-  function updateImage(count) {
+  function updateImage(count, mcount) {
     //console.log(count);
+    if (monthCount > 0) {
+      mcount = monthCount;
+    }
     if (count <= 130) {
-      countDisplay.innerText = (count + monthCount * 130) + ' Total Visits';
+      countDisplay.innerText = (count + mcount * 130) + '/1040' + ' Total Visits ';
       templeElem.src = `images/t-${count}.png`;
     } else {
       templeElem.src = `images/t-130.png`;
@@ -37,10 +40,10 @@
 
   function updateMonthImage(monthCount) {
     console.log(monthCount);
-    if (monthCount <= 5 && monthCount >= 0) {
+    if (monthCount <= 6 && monthCount >= 0) {
       monthsElem.src=`images/month-${monthCount}.png`;
     } else {
-      monthsElem.src=`images/month-6.png`;
+      monthsElem.src=`images/month-7.png`;
       countDisplay.innerText = 'We have met our goal!'
     }
   }
@@ -77,9 +80,15 @@
   // Load the current count on page load
   (async () => {
     try {
-      const response = await fetch('https://therapyidahofalls.com/get-counter.php');
-      displayedCount = Number(await response.text());
-      updateImage(displayedCount);
+      
+      const response2 = await fetch('https://therapyidahofalls.com/get-month-counter.php');
+      monthCount = Number(await response2.text());
+      updateMonthImage(monthCount);
+
+      const response1 = await fetch('https://therapyidahofalls.com/get-counter.php');
+      displayedCount = Number(await response1.text());
+      updateImage(displayedCount, monthCount);
+
     } catch (error) {
       console.error('Error:', error);
     }
@@ -88,9 +97,7 @@
   // Load the current month on page load
   (async () => {
     try {
-      const response = await fetch('https://therapyidahofalls.com/get-month-counter.php');
-      monthCount = Number(await response.text());
-      updateMonthImage(monthCount);
+      
     } catch (error) {
       console.error('Error:', error);
     }
