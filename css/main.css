@@ -1,3 +1,6 @@
+body, button {
+    font-family:Arial, Helvetica, sans-serif;
+}
 h1 {
     text-align: center;
 }
@@ -27,7 +30,7 @@ button:active {
 }
 #increment {
     margin: 0 auto;
-    font-size: 2em;
+    font-size: 1.3em;
 }
 #temple {
     max-width: 700px;
