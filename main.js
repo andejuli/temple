@@ -31,9 +31,9 @@
   (async () => {
     try {
       const response = await fetch('https://therapyidahofalls.com/get-counter.php');
-      displayedCount = Number(await response.text());
+      updateImage(displayedCount = Number(await response.text()));
       countDisplay.innerText = (displayedCount + monthCount * 130) + '/1000' + ' Total Visits ';
-      updateImage(displayedCount);
+      // updateImage(displayedCount);
     } catch (error) {
       console.error('Error:', error);
     }
