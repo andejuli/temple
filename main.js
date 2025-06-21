@@ -31,9 +31,9 @@
   (async () => {
     try {
       const response = await fetch('https://therapyidahofalls.com/get-counter.php');
-      updateImage(displayedCount = Number(await response.text()));
-      countDisplay.innerText = (displayedCount + monthCount * 130) + '/1000' + ' Total Visits ';
-      // updateImage(displayedCount);
+      displayedCount = Number(await response.text());
+      //countDisplay.innerText = (displayedCount + monthCount * 130) + '/1000' + ' Total Visits ';
+      updateImage(displayedCount);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -41,8 +41,8 @@
 
   function updateImage(count) {
     console.log(monthCount);
+    countDisplay.innerText = (count + monthCount * 130) + '/1000' + ' Total Visits ';
     if (count <= 130) {
-      countDisplay.innerText = (count + monthCount * 130) + '/1000' + ' Total Visits ';
       templeElem.src = `images/t-${count}.png`;
     } else {
       templeElem.src = `images/t-130.png`;
