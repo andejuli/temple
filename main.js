@@ -23,7 +23,7 @@
     } else {
       templeElem.src = `images/t-130.png`;
       countDisplay.innerText = 'We have met our month goal!';
-      updateMonth();
+      
     }
   }
 
@@ -63,6 +63,8 @@
         
         sessionClicks++;
         sessionStorage.setItem('sessionClicks', sessionClicks); 
+      } else {
+        updateMonth();
       }
       
     } catch (error) {
