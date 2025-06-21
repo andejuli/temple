@@ -18,7 +18,7 @@
   function updateImage(count) {
     console.log(monthCount);
     if (count <= 130) {
-      countDisplay.innerText = (count + monthCount * 130) + '/1040' + ' Total Visits ';
+      countDisplay.innerText = (count + monthCount * 130) + '/1000' + ' Total Visits ';
       templeElem.src = `images/t-${count}.png`;
     } else {
       templeElem.src = `images/t-130.png`;
