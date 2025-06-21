@@ -37,10 +37,10 @@
 
   function updateMonthImage(monthCount) {
     console.log(monthCount);
-    if (monthCount <= 6 && monthCount >= 0) {
+    if (monthCount <= 7 && monthCount >= 0) {
       monthsElem.src=`images/month-${monthCount}.png`;
     } else {
-      monthsElem.src=`images/month-7.png`;
+      monthsElem.src=`images/month-8.png`;
       countDisplay.innerText = 'We have met our goal!'
     }
   }
