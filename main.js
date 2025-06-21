@@ -16,7 +16,7 @@
   
 
   function updateImage(count) {
-    console.log(count);
+    //console.log(count);
     if (count <= 130) {
       countDisplay.innerText = count + ' Total Visits';
       templeElem.src = `images/t-${count}.png`;
@@ -30,6 +30,7 @@
   async function updateMonth(){
       const mresponse = await fetch('https://therapyidahofalls.com/month-counter.php');
       const newMonCount = await mresponse.text();
+      console.log(newMonCount);
         monthCount = Number(newMonCount);
         updateMonthImage(monthCount);
   }
@@ -54,7 +55,7 @@
       if (sessionClicks < 0) {
         sessionStorage.setItem(sessionClicks, 0);
       }
-      if (newCount <= 130 && newCount >= 0) {
+      if (newCount <= 129 && newCount >= 0) {
         
         displayedCount = Number(newCount);
         updateImage(displayedCount);
@@ -65,6 +66,7 @@
         sessionStorage.setItem('sessionClicks', sessionClicks); 
       } else {
         updateMonth();
+        alert('new month!');
       }
       
     } catch (error) {
