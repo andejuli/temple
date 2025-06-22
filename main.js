@@ -15,25 +15,20 @@
   let displayedCount;
   let monthCount;
   
-  // Load the current month on page load
   (async () => {
     try {
-      const response = await fetch('https://therapyidahofalls.com/get-month-counter.php');
-      monthCount = Number(await response.text());
-      updateMonthImage(monthCount);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  })();
+      // First get the month count
+      const monthResponse = await fetch('https://therapyidahofalls.com/get-month-counter.php');
+      monthCount = Number(await monthResponse.text());
+      updateMonthImage(monthCount); // if you use this
 
+      // Then get the regular count
+      const countResponse = await fetch('https://therapyidahofalls.com/get-counter.php');
+      displayedCount = Number(await countResponse.text());
 
-  // Load the current count on page load
-  (async () => {
-    try {
-      const response = await fetch('https://therapyidahofalls.com/get-counter.php');
-      displayedCount = Number(await response.text());
-      //countDisplay.innerText = (displayedCount + monthCount * 130) + '/1000' + ' Total Visits ';
+      // Now both are ready
       updateImage(displayedCount);
+
     } catch (error) {
       console.error('Error:', error);
     }
