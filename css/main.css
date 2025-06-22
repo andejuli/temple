@@ -36,6 +36,7 @@ button:active {
 }
 #display {
     display: flex;
+    justify-content: space-around;
     max-width: 600px;
     width: 95%;
     margin: 0 auto;
@@ -54,6 +55,7 @@ button:active {
     }
     #increment {
         font-size: 1.3em;
+        width: 40%
     }
     button {
         width: 60%;
