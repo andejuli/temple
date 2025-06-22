@@ -47,7 +47,12 @@ button:active {
     display: block;
     margin: 0 auto;
 }
-
+#month {
+    margin-bottom: 10px;
+}
+#temple {
+    margin-top: 10px;
+}
 
 @media only screen and (min-width: 600px) {
     #temple, #month, #display {
