@@ -40,8 +40,8 @@
   })();
 
   function updateImage(count) {
-    console.log(monthCount);
-    countDisplay.innerText = (count + monthCount * 130) + '/1000' + ' Total Visits ';
+    //console.log(monthCount);
+    countDisplay.innerText = (count + monthCount * 130) + '/1000' + ' Visits ';
     if (count <= 130) {
       templeElem.src = `images/t-${count}.png`;
     } else {

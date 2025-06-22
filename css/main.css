@@ -5,10 +5,10 @@ h1 {
     text-align: center;
 }
 button {
-  max-width: 700px;
+  max-width: 600px;
   margin: 0 auto;
   display: block;
-  width: 95%;
+  width: 100%;
   padding: 10px 20px;
   font-size: 10px;
   color: #2b3944;
@@ -16,7 +16,7 @@ button {
   border: 2px solid #aaa;
   border-radius: 4px;
   cursor: pointer;
-  box-shadow: inset 0 1px 0 #fff; /* gives a subtle top edge highlight */
+  box-shadow: inset 2px 2px 2px #fff; /* gives a subtle top edge highlight */
   transition: background-color 0.2s, transform 0.1s;
 }
 
@@ -30,19 +30,30 @@ button:active {
 }
 #increment {
     margin: 0 auto;
-    font-size: 1.3em;
+    font-size: 1em;
+    padding: 5px;
+    margin: 5px;
+}
+#display {
+    display: flex;
+    max-width: 600px;
+    width: 95%;
+    margin: 0 auto;
 }
 #temple, #month {
-    max-width: 700px;
+    max-width: 600px;
     width: 95%;
     display: block;
     margin: 0 auto;
 }
 
 
-@media only screen and (min-width: 800px) {
-    #temple {
+@media only screen and (min-width: 600px) {
+    #temple, #month, #display {
         width: 60%;
+    }
+    #increment {
+        font-size: 1.3em;
     }
     button {
         width: 60%;
