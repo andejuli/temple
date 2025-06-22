@@ -6,9 +6,6 @@
   
 
   // Initialize session storage for clicks this session
-  // if (!sessionStorage.getItem('sessionClicks')) { 
-  //   sessionStorage.setItem('sessionClicks', '0'); 
-  // }
   sessionStorage.setItem('sessionClicks', '0');
 
   // Initialize the displayed count on page load
@@ -35,15 +32,12 @@
   })();
 
   function updateImage(count) {
-    console.log(monthCount);
-    console.log(count);
     countDisplay.innerText = (count + monthCount * 130) + '/1000' + ' Visits ';
     if (count <= 130) {
       templeElem.src = `images/t-${count}.png`;
     } else {
       templeElem.src = `images/t-130.png`;
       countDisplay.innerText = 'We have met our month goal!';
-      
     }
   }
 
@@ -56,7 +50,6 @@
   }
 
   function updateMonthImage(monthCount) {
-    console.log(monthCount);
     if (monthCount <= 7 && monthCount >= 0) {
       monthsElem.src=`images/month-${monthCount}.png`;
     } else {
@@ -81,12 +74,10 @@
         updateImage(displayedCount);
 
         // Increment the local session click counter
-        
         sessionClicks++;
         sessionStorage.setItem('sessionClicks', sessionClicks); 
       } else {
         updateMonth();
-        
       }
       
     } catch (error) {
